@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import {BiSearch} from 'react-icons/bi'
 import '../styles/Admin.css'
 import axios from 'axios';
@@ -18,7 +18,7 @@ const optionsTrending = {
   url: 'https://mboum-finance.p.rapidapi.com/co/collections/most_actives',
   params: {start: '0'},
   headers: {
-    'X-RapidAPI-Key': '947b801f92msh96b919932628932p1a1413jsncb9cc7188719',
+    'X-RapidAPI-Key': 'fc1a9ce83dmsh89bfeafe4258cbcp17a75cjsn1a4934c7ed6d',
     'X-RapidAPI-Host': 'mboum-finance.p.rapidapi.com'
   }
 };
@@ -49,7 +49,7 @@ const optionsAll = {
     format: 'json'
   },
   headers: {
-    'X-RapidAPI-Key': '947b801f92msh96b919932628932p1a1413jsncb9cc7188719',
+    'X-RapidAPI-Key': 'fc1a9ce83dmsh89bfeafe4258cbcp17a75cjsn1a4934c7ed6d',
     'X-RapidAPI-Host': 'twelve-data1.p.rapidapi.com'
   }
 };

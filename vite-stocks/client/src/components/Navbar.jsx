@@ -1,82 +1,47 @@
-import React, { useContext } from 'react'
-import '../styles/Navbar.css';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react'; // React import removed for React 17+
+import { Link } from 'react-router-dom'; // Use Link for navigation
 import { GeneralContext } from '../context/GeneralContext';
+import '../styles/Navbar.css';
 
 const Navbar = () => {
+    const usertype = localStorage.getItem('userType'); // Retrieve user type
+    const { logout } = useContext(GeneralContext); // Use context for logout
 
-    const navigate = useNavigate();
-    const usertype = localStorage.getItem('userType');
-
-    const {logout} = useContext(GeneralContext);
-
-  return (
-    <>
+    return (
         <div className="navbar">
+            <h3>SB Stocks {usertype === 'admin' && '(Admin)'}</h3>
 
-        {!usertype ? 
-            <>
-                <h3 >SB Stocks</h3>
-
-                <div className="nav-options" >
-
-                <ul>
-                    <li className='header-li'><a href="#home">Home</a></li>
-                    <li className='header-li'><a href="#about">About</a> </li>
-                    <li className='header-li'><a href="#home">Join now</a></li>
-                </ul>
-
-                </div>
-            </>
-        :
-        
-        <>
-        {usertype === 'customer' ? 
-        
-        <>
-            <h3 >SB Stocks</h3>
-
-            <div className="nav-options" >
-
-                <p onClick={()=>navigate('/home')}>Home</p>
-                <p onClick={()=>navigate('/portfolio')}>Portfolio</p>
-                <p onClick={()=>navigate('/history')}>History</p>
-                <p onClick={()=>navigate('/profile')}>Profile</p>
-                <p onClick={logout}>Logout</p>
-
-            </div>
-        </>
-            :  usertype === 'admin' ?
-
+            <div className="nav-options">
+                {!usertype ? (
+                    <ul>
+                        <li className='header-li'><a href="#home">Home</a></li>
+                        <li className='header-li'><a href="#about">About</a></li>
+                        <li className='header-li'><a href="#home">Join now</a></li>
+                    </ul>
+                ) : (
                     <>
-                        <h3 >SB Stocks (Admin)</h3>
-                        <div className="nav-options" >
-
-                            <p onClick={()=>navigate('/admin')}>Home</p>
-                            <p onClick={()=>navigate('/users')}>Users</p>
-                            <p onClick={()=>navigate('/all-orders')}>Orders</p>
-                            <p onClick={()=>navigate('/all-transactions')}>Transactions</p>
-                            <p onClick={logout}>Logout</p>
-                        </div> 
+                        <Link to="/home">Home</Link>
+                        {usertype === 'customer' ? (
+                            <>
+                                <Link to="/portfolio">Portfolio</Link>
+                                <Link to="/history">History</Link>
+                                <Link to="/profile">Profile</Link>
+                            </>
+                        ) : (
+                            usertype === 'admin' && (
+                                <>
+                                    <Link to="/users">Users</Link>
+                                    <Link to="/all-orders">Orders</Link>
+                                    <Link to="/all-transactions">Transactions</Link>
+                                </>
+                            )
+                        )}
+                        <button onClick={logout}>Logout</button>
                     </>
-            
-                :
-
-                    ""
-
-        }
-        </>}
-
-        
-
-
-
-            
-
+                )}
+            </div>
         </div>
-    
-    </>
-  )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

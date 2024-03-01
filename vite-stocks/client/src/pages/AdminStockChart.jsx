@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import Chart from 'react-apexcharts'
 import '../styles/AdminStockChart.css';
@@ -40,7 +40,7 @@ const AdminStockChart = () => {
       format: 'json'
     },
     headers: {
-      'X-RapidAPI-Key': '947b801f92msh96b919932628932p1a1413jsncb9cc7188719',
+      'X-RapidAPI-Key': 'fc1a9ce83dmsh89bfeafe4258cbcp17a75cjsn1a4934c7ed6d',
       'X-RapidAPI-Host': 'twelve-data1.p.rapidapi.com'
     }
   };
